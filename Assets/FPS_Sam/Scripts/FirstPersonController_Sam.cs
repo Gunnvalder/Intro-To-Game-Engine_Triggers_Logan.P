@@ -12,12 +12,10 @@ public class FirstPersonController_Sam : MonoBehaviour
     public Light blueLight;
 
     //Getting the Shapes Obejects
-    public GameObject Object1;
-    public GameObject Object2;
-    public GameObject Object3;
+    public GameObject Object;
 
 
-    bool Object1Disable = false;
+    bool ObjectDisable = false;
     float WaitForEnable = 2;
 
 
@@ -75,8 +73,16 @@ public class FirstPersonController_Sam : MonoBehaviour
     private float defaultFOV;
     private Coroutine zoomRoutine;
 
- 
-  
+
+
+
+    private void Start()
+    {
+        
+    }
+
+
+
 
     // Sliding Settings
     private Vector3 hitPointNormal;
