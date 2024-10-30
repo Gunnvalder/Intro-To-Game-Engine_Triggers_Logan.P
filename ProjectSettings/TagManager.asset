@@ -6,6 +6,10 @@ TagManager:
   tags:
   - LightTrigger
   - BlueLight
+  - Shape
+  - ShapeTrigger
+  - BooTextTrigger
+  - BooText
   layers:
   - Default
   - TransparentFX

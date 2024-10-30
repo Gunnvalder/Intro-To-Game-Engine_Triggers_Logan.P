@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 // Sam Robichaud 2022
@@ -11,12 +12,18 @@ public class FirstPersonController_Sam : MonoBehaviour
     //GETTING THE BLUE LIGHT OBJECT
     public Light blueLight;
 
-    //Getting the Shapes Obejects
-    public GameObject Object;
+    //Getting the Shape Obeject
+    public GameObject Shape;
+
+    //Getting the Boo Text
+    public TextMeshProUGUI BooText;
 
 
-    bool ObjectDisable = false;
-    float WaitForEnable = 2;
+    private void Start()
+    {
+        BooText.gameObject.SetActive(false);
+    }
+
 
 
     public bool canMove { get; private set; } = true;
@@ -73,17 +80,6 @@ public class FirstPersonController_Sam : MonoBehaviour
     private float defaultFOV;
     private Coroutine zoomRoutine;
 
-
-
-
-    private void Start()
-    {
-        
-    }
-
-
-
-
     // Sliding Settings
     private Vector3 hitPointNormal;
     private bool isSliding
@@ -108,6 +104,7 @@ public class FirstPersonController_Sam : MonoBehaviour
             else { return false; }
         }
     }
+
 
 
 
@@ -144,11 +141,6 @@ public class FirstPersonController_Sam : MonoBehaviour
             if (canCrouch)      { HandleCrouch();                                       }
 
             ApplyFinalMovement();
-
-
-
-
-
         }
     }
 
@@ -300,7 +292,15 @@ public class FirstPersonController_Sam : MonoBehaviour
         if(other.gameObject.name == "LightTrigger")
         {
             blueLight.intensity = 0;
-
+        }
+        if(other.gameObject.CompareTag("ShapeTrigger"))
+        {
+            GameObject Shape = GameObject.FindWithTag("Shape");
+            Shape.SetActive(false);
+        }
+        if(other.gameObject.name == "BooTextTrigger")
+        {
+            BooText.gameObject.SetActive(true);
         }
     }
 
@@ -309,7 +309,16 @@ public class FirstPersonController_Sam : MonoBehaviour
         if(other.gameObject.name == "LightTrigger")
         {
             blueLight.intensity = 11;
-
+        }
+        if(other.gameObject.CompareTag("ShapeTrigger"))
+        {
+            GameObject Shape = GameObject.FindWithTag("Shape");
+            Shape.SetActive(true);
+        }
+        if (other.gameObject.name == "BooTextTrigger")
+        {
+            GameObject BooText = GameObject.FindWithTag("BooText");
+            BooText.SetActive(false);
         }
     }
 
