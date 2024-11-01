@@ -281,31 +281,13 @@ public class FirstPersonController_Sam : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //Setting the Light intensety to 0 when inside the trigger
-        if(other.gameObject.name == "LightTrigger")
-        {
-            blueLight.intensity = 0;
-        }
-        //Setting the Shape object to turn off when inside the trigger
-        if(other.gameObject.name ==("ShapeTrigger"))
-        {
-            GameObject Shape = GameObject.FindWithTag("Shape");
-            Shape.SetActive(false);
-        }
+        blueLight.intensity = 0;
+        Shape.SetActive(false);
     }
 
     private void OnTriggerExit(Collider other)
     {
-        //Setting the light intensity to original when outside the trigger 
-        if(other.gameObject.name == "LightTrigger")
-        {
-            blueLight.intensity = 11;
-        }
-        //Setting the shape object to turn on when outside of the trigger
-        if (other.gameObject.name == "ShapeTrigger")
-        {
-            GameObject Shape = GameObject.FindWithTag("Shape");
-            Shape.SetActive(true);
-        }
+        blueLight.intensity = 11;
+        Shape.SetActive(true);
     }
 }
