@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 // Sam Robichaud 2022
@@ -14,15 +15,6 @@ public class FirstPersonController_Sam : MonoBehaviour
 
     //Getting the Shape Obeject
     public GameObject Shape;
-
-    //Getting the Boo Text
-    public TextMeshProUGUI BooText;
-
-
-    private void Start()
-    {
-        BooText.gameObject.SetActive(false);
-    }
 
 
 
@@ -289,40 +281,31 @@ public class FirstPersonController_Sam : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        //Setting the Light intensety to 0 when inside the trigger
         if(other.gameObject.name == "LightTrigger")
         {
             blueLight.intensity = 0;
         }
-        if(other.gameObject.CompareTag("ShapeTrigger"))
+        //Setting the Shape object to turn off when inside the trigger
+        if(other.gameObject.name ==("ShapeTrigger"))
         {
             GameObject Shape = GameObject.FindWithTag("Shape");
             Shape.SetActive(false);
-        }
-        if(other.gameObject.name == "BooTextTrigger")
-        {
-            BooText.gameObject.SetActive(true);
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
+        //Setting the light intensity to original when outside the trigger 
         if(other.gameObject.name == "LightTrigger")
         {
             blueLight.intensity = 11;
         }
-        if(other.gameObject.CompareTag("ShapeTrigger"))
+        //Setting the shape object to turn on when outside of the trigger
+        if (other.gameObject.name == "ShapeTrigger")
         {
             GameObject Shape = GameObject.FindWithTag("Shape");
             Shape.SetActive(true);
         }
-        if (other.gameObject.name == "BooTextTrigger")
-        {
-            GameObject BooText = GameObject.FindWithTag("BooText");
-            BooText.SetActive(false);
-        }
     }
-
-
-
-
 }
